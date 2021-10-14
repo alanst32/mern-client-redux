@@ -13,7 +13,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-    console.log(`Got here in the Student Action: ${JSON.stringify(action)}`);
     switch(action.type) {
         case STUDENT_ACTIONS.GET_STUDENTS_REQUEST:
             return {

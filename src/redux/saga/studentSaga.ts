@@ -29,14 +29,8 @@ const getStudentsAsync = (body: StudentRequest) => {
 
 function* getStudentsSaga(action) {
     try {
-        console.log('\n\n\n CALLING SAGE Async Request');
-        console.log('%j', action);
         const args = get(action, 'args', {})
         const response = yield call(getStudentsAsync, args);
-
-        console.log('Response');
-        console.log('%j', response);
-
         yield put(getStudentsSuccess(response.data));
     } catch(ex: any) {
         const error = {
@@ -135,13 +129,6 @@ const deleteStudentsAsync = async (ids: string[]) => {
         yield put(deleteStudentError({error}));
     }
 };
-
-/*
-export const getStudentsRequest = (args: StudentRequest): GetStudentsRequest  => ({
-  type: STUDENT_ACTIONS.GET_STUDENTS_REQUEST,
-  args,
-}); 
-*/
 
 function* studentSaga() {
     yield all([
